@@ -1,0 +1,77 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+.form-container {
+    max-width: 700px;
+    background: #fff;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    color: #444;
+}
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+textarea {
+    resize: none;
+    height: 100px;
+}
+.cta-btn {
+    display: inline-block;
+    margin-top: 25px;
+    background-color: #800000;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.cta-btn:hover {
+    background-color: #800000;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* jarak antar checkbox */
+    margin-top: 5px;
+    flex-wrap: nowrap;
+}
+
+.checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* jarak kecil antara checkbox dan teks */
+    white-space: nowrap; /* cegah teks turun ke bawah */
+    font-weight: 500;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin: 0;
+}

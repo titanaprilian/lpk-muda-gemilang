@@ -1,0 +1,8 @@
+{
+    "plugins": ["@prettier/plugin-php"],
+    "phpVersion": "8.1",
+    "embeddedLanguageFormatting": "auto",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false
+}
