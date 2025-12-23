@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
-use Livewire\Volt\Volt;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 
 Route::get("/", function () {
     return view("public.home");
@@ -24,32 +25,65 @@ Route::get("/pendaftaran", function () {
     return view("public.form-pendaftaran");
 })->name("pendaftaran");
 
-Route::view("dashboard", "dashboard")
-    ->middleware(["auth", "verified"])
-    ->name("dashboard");
+// Admin Auth Routes
+Route::prefix("admin")
+    ->name("admin.")
+    ->group(function () {
+        // 1. Login View
+        $limiter = config("fortify.limiters.login");
 
-Route::middleware(["auth"])->group(function () {
-    Route::redirect("settings", "settings/profile");
+        Route::get("/login", [AuthenticatedSessionController::class, "create"])
+            ->middleware(["guest:" . config("fortify.guard")])
+            ->name("login");
 
-    Volt::route("settings/profile", "settings.profile")->name("profile.edit");
-    Volt::route("settings/password", "settings.password")->name(
-        "user-password.edit",
-    );
-    Volt::route("settings/appearance", "settings.appearance")->name(
-        "appearance.edit",
-    );
+        // 2. Login Action (POST)
+        Route::post("/login", [AuthenticatedSessionController::class, "store"])
+            ->middleware(
+                array_filter([
+                    "guest:" . config("fortify.guard"),
+                    $limiter ? "throttle:" . $limiter : null,
+                ]),
+            )
+            ->name("login.store");
 
-    Volt::route("settings/two-factor", "settings.two-factor")
-        ->middleware(
-            when(
-                Features::canManageTwoFactorAuthentication() &&
-                    Features::optionEnabled(
-                        Features::twoFactorAuthentication(),
-                        "confirmPassword",
-                    ),
-                ["password.confirm"],
-                [],
-            ),
-        )
-        ->name("two-factor.show");
-});
+        // 3. Logout Action
+        Route::post("/logout", [
+            AuthenticatedSessionController::class,
+            "destroy",
+        ])->name("logout");
+
+        Route::get("/forgot-password", [
+            PasswordResetLinkController::class,
+            "create",
+        ])
+            ->middleware(["guest:" . config("fortify.guard")])
+            ->name("password.request");
+
+        // 2. Send Reset Link Email (Action)
+        Route::post("/forgot-password", [
+            PasswordResetLinkController::class,
+            "store",
+        ])
+            ->middleware(["guest:" . config("fortify.guard")])
+            ->name("password.email");
+
+        // 3. Reset Password Form (The link clicked in the email)
+        Route::get("/reset-password/{token}", [
+            NewPasswordController::class,
+            "create",
+        ])
+            ->middleware(["guest:" . config("fortify.guard")])
+            ->name("password.reset");
+
+        // 4. Update Password (Action)
+        Route::post("/reset-password", [NewPasswordController::class, "store"])
+            ->middleware(["guest:" . config("fortify.guard")])
+            ->name("password.update");
+
+        // Protected Admin Routes
+        Route::middleware("auth")->group(function () {
+            Route::get("/dashboard", function () {
+                return view("admin.dashboard");
+            })->name("dashboard");
+        });
+    });

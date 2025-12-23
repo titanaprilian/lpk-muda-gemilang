@@ -1,0 +1,69 @@
+/* Quick Action Cards */
+.action-card {
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    border: 1px solid #e2e8f0 !important;
+    background: white;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color) !important;
+}
+
+.action-card h6 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #1e293b;
+}
+
+/* Dashboard Table Styles */
+.dashboard-table th {
+    border-top: none;
+    font-weight: 600;
+    color: #64748b;
+    background: #f8fafc;
+    padding: 1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dashboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Avatar specifically for tables (slightly larger than sidebar) */
+.table-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart Placeholder specific styling */
+.chart-placeholder {
+    height: 300px;
+    background: #f8fafc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    border: 2px dashed #e2e8f0;
+}
