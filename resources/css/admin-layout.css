@@ -1,0 +1,373 @@
+/* =========================================
+   1. IMPORTS & VARIABLES
+   ========================================= */
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+:root {
+    /* Dimensions */
+    --sidebar-width: 260px;
+    --header-height: 70px;
+
+    /* Color Palette */
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef2ff;
+
+    /* Layout Colors */
+    --sidebar-bg: #ffffff;
+    --sidebar-color: #64748b;
+    --sidebar-border: #e2e8f0;
+    --body-bg: #f1f5f9;
+    --card-bg: #ffffff;
+
+    /* Status Colors */
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --info-color: #3b82f6;
+
+    /* Effects */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    color: #334155;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. SIDEBAR (Fixed Left)
+   ========================================= */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-color);
+    border-right: 1px solid var(--sidebar-border);
+    z-index: 1050; /* Higher than header */
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Sidebar Header (Brand) */
+.sidebar-header {
+    height: var(--header-height);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #0f172a;
+}
+
+.brand-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.brand-text h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.brand-text span {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+}
+
+/* Sidebar Nav */
+.sidebar-nav {
+    flex: 1;
+    padding: 1.5rem 1rem;
+}
+
+.nav-title {
+    padding: 0 0.75rem 0.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    color: var(--sidebar-color);
+    text-decoration: none;
+    transition: var(--transition);
+    border-radius: 6px;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   3. MAIN CONTENT WRAPPER (The Layout Fix)
+   ========================================= */
+.admin-main {
+    /* Push content right by sidebar width */
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+/* =========================================
+   4. HEADER (Sticky Top)
+   ========================================= */
+.admin-header {
+    height: var(--header-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sidebar-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Lower than sidebar */
+}
+
+/* Header Left */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toggle-sidebar {
+    background: transparent;
+    border: none;
+    color: var(--sidebar-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.toggle-sidebar:hover {
+    background: #f1f5f9;
+    color: var(--primary-color);
+}
+
+.page-title h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #1e293b;
+}
+
+/* Header Right */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-action {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.header-action:hover {
+    background: #f1f5f9;
+    color: var(--primary-color);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--danger-color);
+    color: white;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    border: 2px solid white;
+}
+
+/* =========================================
+   5. CONTENT BODY
+   ========================================= */
+.admin-content {
+    padding: 2rem;
+    flex: 1;
+}
+
+/* Cards (Your Custom Style) */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid var(--sidebar-border);
+    padding: 1.25rem;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* =========================================
+   6. RESPONSIVENESS & TOGGLE STATES
+   ========================================= */
+
+/* State: Sidebar Toggled (Hidden on Desktop) */
+body.sidebar-toggled .admin-sidebar {
+    margin-left: calc(var(--sidebar-width) * -1);
+}
+
+body.sidebar-toggled .admin-main {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Media: Mobile (< 992px) */
+@media (max-width: 992px) {
+    /* Default: Sidebar Hidden */
+    .admin-sidebar {
+        margin-left: calc(var(--sidebar-width) * -1);
+    }
+
+    /* Default: Main Content Full Width */
+    .admin-main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Toggled: Sidebar Visible (Overlays content) */
+    body.sidebar-toggled .admin-sidebar {
+        margin-left: 0;
+        box-shadow: var(--shadow-md);
+    }
+
+    /* Reduce padding on mobile */
+    .admin-header,
+    .admin-content {
+        padding: 1rem;
+    }
+}
+
+/* =========================================
+   SIDEBAR FOOTER (User Profile)
+   ========================================= */
+.sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--sidebar-border);
+    background-color: #f8fafc; /* Slightly darker than sidebar bg */
+    margin-top: auto; /* Pushes footer to the very bottom */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0; /* Prevents shrinking on small screens */
+}
+
+.user-details {
+    overflow: hidden; /* Handles long names gracefully */
+}
+
+.user-details h4 {
+    font-size: 0.875rem;
+    margin: 0;
+    font-weight: 600;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-details small {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+}

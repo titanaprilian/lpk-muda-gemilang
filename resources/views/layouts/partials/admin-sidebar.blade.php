@@ -1,5 +1,5 @@
 <aside class="admin-sidebar" id="sidebar">
-    <div class="sidebar-header">
+    <div class="sidebar-header d-flex align-items-center py-5">
         <a href="{{ route('admin.dashboard') }}" class="brand-logo">
             <img src="{{ asset('assets/img/LPK MUDA GEMILANG.jpeg') }}" alt="Logo">
             <div class="brand-text">

@@ -28,9 +28,9 @@ return [
             [
                 "title" => "Data Pendaftar",
                 "icon" => "fas fa-user-graduate",
-                "route" => "admin.dashboard", // Change this to 'admin.applicants.index' later
-                "active_route" => "admin.applicants.*",
-                // 'badge' => 12, // Example of a static badge (Dynamic badges need ViewComposers)
+                "route" => "admin.registrants.index",
+                "active_route" => "admin.registrants.*",
+                // "badge" => 12, // Example of a static badge (Dynamic badges need ViewComposers)
             ],
             [
                 "title" => "Export Laporan",

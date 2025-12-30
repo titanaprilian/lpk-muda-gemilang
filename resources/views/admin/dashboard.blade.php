@@ -12,33 +12,15 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <x-admin.stats-card title="Total Pendaftar" value="156" percentage="12.5%" :isIncrease="true"
-            icon="fas fa-user-graduate" color="primary" />
-
-        <x-admin.stats-card title="Menunggu Verifikasi" value="12" percentage="3 Pending" :isIncrease="true"
-            icon="fas fa-clock" color="warning" delay="0.1" />
-
-        <x-admin.stats-card title="Diterima" value="98" percentage="Siap Export" :isIncrease="true"
-            icon="fas fa-check-circle" color="success" delay="0.2" />
-
-        <x-admin.stats-card title="Total Foto Galeri" value="45" percentage="2 Album Baru" :isIncrease="true"
-            icon="fas fa-images" color="info" delay="0.3" />
-    </div>
+    <livewire:admin.stats-overview />
 
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card fade-in">
                 <div class="card-header">
                     <h5 class="card-title mb-2">Statistik Pendaftaran</h5>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown">Tahun Ini</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Bulan Ini</a></li>
-                            <li><a class="dropdown-item" href="#">Tahun Ini</a></li>
-                        </ul>
-                    </div>
+
+                    <livewire:admin.registration-chart />
                 </div>
                 <div class="card-body">
                     <div class="chart-placeholder">

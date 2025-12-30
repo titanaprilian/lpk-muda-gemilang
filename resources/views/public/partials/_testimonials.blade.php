@@ -7,7 +7,7 @@
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="swiper init-swiper">
+        <div class="swiper init-swiper" id="testimonials-slider">
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide">

@@ -41,6 +41,7 @@
                     <li><a href="/#galeri">Galeri</a></li>
                     {{-- Updated from route('contact') to static /kontak --}}
                     <li><a href="/kontak">Kontak</a></li>
+                    <li><a href="/admin/login">Login Admin</a></li>
                 </ul>
             </div>
 

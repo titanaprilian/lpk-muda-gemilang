@@ -8,10 +8,18 @@
 
     <title>@yield('title', 'Admin Panel') — {{ config('app.name', 'Muda Gemilang') }}</title>
 
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {{-- Favicon --}}
+    <link href="{{ asset('assets/img/LPK MUDA GEMILANG.jpeg') }}" rel="icon">
 
-    <link href="{{ asset('assets/css/admin-layout.css') }}" rel="stylesheet">
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    {{-- VITE ASSETS --}}
+    {{-- We load app.css for basic bootstrap/utilities, and admin-layout.css for specific dashboard styles --}}
+    @vite(['resources/css/app.css', 'resources/css/admin-layout.css', 'resources/js/admin-layout.js'])
 
     @stack('styles')
 </head>
@@ -19,21 +27,36 @@
 <body>
     <div class="admin-container">
 
+        {{-- Sidebar Component --}}
         @include('layouts.partials.admin-sidebar')
 
         <main class="admin-main">
-
+            {{-- Header/Navbar Component --}}
             @include('layouts.partials.admin-header')
 
-            <div class="admin-content">
+            <div class="admin-content p-4">
+                {{-- Flash Messages (Toast/Alerts) --}}
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 @yield('content')
             </div>
+
+            {{-- Footer Component (Optional) --}}
+            {{-- @include('layouts.partials.admin-footer') --}}
         </main>
     </div>
-
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <script src="{{ asset('js/admin-layout.js') }}"></script>
 
     @stack('scripts')
 </body>
