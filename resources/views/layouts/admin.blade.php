@@ -53,8 +53,38 @@
                 @yield('content')
             </div>
 
-            {{-- Footer Component (Optional) --}}
-            {{-- @include('layouts.partials.admin-footer') --}}
+            {{-- Toast Logic --}}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    @if (session('success'))
+                        Toast.success("{{ session('success') }}");
+                    @endif
+                    @if (session('error'))
+                        Toast.error("{{ session('error') }}");
+                    @endif
+                    @if (session('warning'))
+                        Toast.warning("{{ session('warning') }}");
+                    @endif
+                    @if (session('info'))
+                        Toast.info("{{ session('info') }}");
+                    @endif
+                });
+
+                document.addEventListener('livewire:init', () => {
+                    Livewire.on('trigger-toast', (event) => {
+                        // event is an array in Livewire v3, usually [0] contains the payload
+                        // or strictly mapped properties depending on dispatch method. 
+                        // We'll handle the generic object style:
+
+                        // Allow access to payload whether it comes as object or array
+                        let data = event[0] || event;
+
+                        if (window.Toast && window.Toast[data.type]) {
+                            window.Toast[data.type](data.message);
+                        }
+                    });
+                });
+            </script>
         </main>
     </div>
 
