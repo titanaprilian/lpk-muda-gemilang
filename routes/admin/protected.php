@@ -18,6 +18,10 @@ Route::prefix("registrants")
             return view("admin.registrants.form");
         })->name("create");
 
+        Route::get("/{id}", function ($id) {
+            return view("admin.registrants.view", compact("id"));
+        })->name("view");
+
         Route::get("/{id}/edit", function ($id) {
             return view("admin.registrants.form", compact("id"));
         })->name("edit");
