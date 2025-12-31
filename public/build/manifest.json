@@ -1,0 +1,86 @@
+{
+  "_bootstrap.esm-ChCUMv8x.js": {
+    "file": "assets/bootstrap.esm-ChCUMv8x.js",
+    "name": "bootstrap.esm"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-BVHPE7da.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-8GirhLYJ.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-DnhYSyY-.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BeopsB42.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "resources/css/admin-auth.css": {
+    "file": "assets/admin-auth-C12cslIQ.css",
+    "src": "resources/css/admin-auth.css",
+    "isEntry": true,
+    "names": [
+      "admin-auth.css"
+    ]
+  },
+  "resources/css/admin-layout.css": {
+    "file": "assets/admin-layout-DdYn1xGV.css",
+    "src": "resources/css/admin-layout.css",
+    "isEntry": true,
+    "names": [
+      "admin-layout.css"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CmnfdXqj.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/main.css": {
+    "file": "assets/main-B7g_jKUp.css",
+    "src": "resources/css/main.css",
+    "isEntry": true,
+    "names": [
+      "main.css"
+    ]
+  },
+  "resources/js/admin-auth.js": {
+    "file": "assets/admin-auth-PRcGzQqw.js",
+    "name": "admin-auth",
+    "src": "resources/js/admin-auth.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.esm-ChCUMv8x.js"
+    ]
+  },
+  "resources/js/admin-layout.js": {
+    "file": "assets/admin-layout-DW3jlm-D.js",
+    "name": "admin-layout",
+    "src": "resources/js/admin-layout.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.esm-ChCUMv8x.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-M8CwiT7q.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
