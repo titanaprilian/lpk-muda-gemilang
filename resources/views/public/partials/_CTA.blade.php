@@ -8,7 +8,7 @@
                     <p>Bergabunglah bersama <strong>LPK Muda Gemilang</strong> untuk mengembangkan kemampuan
                         bahasa, keterampilan kerja, dan pengalaman budaya Jepang.
                         Lengkapi formulir pendaftaran untuk memulai perjalanan kariermu menuju Jepang.</p>
-                    <a class="cta-btn" href="form-pendaftaran.html">Daftar Sekarang</a>
+                    <a class="cta-btn" href="{{ url('/pendaftaran') }}">Daftar Sekarang</a>
                 </div>
             </div>
         </div>
