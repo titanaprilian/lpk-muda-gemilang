@@ -4,14 +4,17 @@ use Livewire\Volt\Component;
 use Livewire\WithPagination;
 use App\Models\Registrant;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithPagination;
 
+    // Use Bootstrap pagination styles
     protected $paginationTheme = 'bootstrap';
 
     public string $search = '';
 
+    // Reset page to 1 when search query changes
     public function updatedSearch()
     {
         $this->resetPage();
@@ -20,16 +23,34 @@ new class extends Component {
     public function delete($id)
     {
         $registrant = Registrant::findOrFail($id);
+
+        // 1. Clean up uploaded files to save storage space
+        $fileColumns = ['scan_ktp', 'scan_kk', 'scan_akta', 'scan_ijazah_sd', 'scan_ijazah_smp', 'scan_ijazah_sma'];
+
+        foreach ($fileColumns as $column) {
+            if ($registrant->$column) {
+                Storage::disk('public')->delete($registrant->$column);
+            }
+        }
+
+        // 2. Delete Record
         $registrant->delete();
-        $this->dispatch('alert', type: 'success', message: 'Data berhasil dihapus.');
+
+        // 3. Notify User
+        $this->dispatch('alert', type: 'success', message: 'Data peserta dan dokumen berhasil dihapus.');
     }
 
     public function with(): array
     {
         $registrants = Registrant::query()
-            ->with('program')
+            ->with('program') // Eager load to prevent N+1 queries
             ->when($this->search, function (Builder $query) {
-                $query->where('full_name', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%');
+                // Group OR conditions to avoid logic errors
+                $query->where(function ($q) {
+                    $q->where('full_name', 'like', '%' . $this->search . '%')
+                        ->orWhere('email', 'like', '%' . $this->search . '%')
+                        ->orWhere('phone_number', 'like', '%' . $this->search . '%');
+                });
             })
             ->latest('registration_date')
             ->paginate(10);
@@ -41,125 +62,71 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div class="card shadow-sm">
-        <div class="card-header bg-white py-3">
+    <div class="card shadow-sm border-0 rounded-4">
+
+        {{-- Card Header --}}
+        <div class="card-header bg-white py-3 border-0 rounded-top-4">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 text-primary">
+                <h5 class="mb-0 text-primary fw-bold">
                     <i class="fas fa-users me-2"></i> Daftar Peserta
                 </h5>
                 <div>
-                    <a href="{{ route('admin.registrants.create') }}" class="btn btn-primary btn-lg">
+                    <a href="{{ route('admin.registrants.create') }}" class="btn btn-primary shadow-sm fw-bold">
                         <i class="fas fa-plus me-1"></i> Tambah Baru
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body p-0">
             {{-- Search Bar --}}
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="fas fa-search text-muted"></i>
-                        </span>
-                        <input type="text" wire:model.live.debounce.300ms="search"
-                            class="form-control border-start-0 ps-0" placeholder="Cari nama, no.reg, atau email...">
+            <div class="p-3 border-bottom bg-light bg-opacity-10">
+                <div class="row">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0 text-muted ps-3">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" wire:model.live.debounce.300ms="search"
+                                class="form-control border-start-0 ps-2" placeholder="Cari nama, email, atau no.hp...">
+                        </div>
                     </div>
                 </div>
             </div>
 
             {{-- Table --}}
             <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama Lengkap</th>
-                            <th>Kontak</th>
-                            <th>Program</th>
-                            <th>Status</th>
-                            <th>Tanggal Daftar</th>
-                            <th class="text-end">Aksi</th>
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr class="text-uppercase small text-muted text-nowrap">
+                            <th class="ps-4 py-3" style="width: 5%">No.</th>
+                            <th class="py-3" style="width: 25%">Nama Lengkap</th>
+                            <th class="py-3" style="width: 20%">Kontak</th>
+                            <th class="py-3" style="width: 15%">Program</th>
+                            <th class="py-3" style="width: 10%">Status</th>
+                            <th class="py-3" style="width: 15%">Tanggal Daftar</th>
+                            <th class="text-end pe-4 py-3" style="width: 10%">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="border-top-0">
                         @forelse($registrants as $registrant)
-                            <tr wire:key="{{ $registrant->id }}">
-                                <td class="fw-bold text-center">
-                                    {{ $registrants->firstItem() + $loop->index }}
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <span class="fw-medium">{{ $registrant->full_name }}</span>
-                                        <small class="text-muted">
-                                            @if ($registrant->gender)
-                                                <i
-                                                    class="fas fa-{{ $registrant->gender == 'Laki-laki' ? 'mars' : 'venus' }}"></i>
-                                                {{ $registrant->gender }}
-                                                @if ($registrant->age)
-                                                    • {{ $registrant->age }} tahun
-                                                @endif
-                                            @endif
-                                        </small>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <small class="text-muted">
-                                            <i class="fas fa-envelope me-1"></i>{{ $registrant->email }}
-                                        </small>
-                                        @if ($registrant->phone_number)
-                                            <small class="text-muted">
-                                                <i class="fas fa-phone me-1"></i>{{ $registrant->phone_number }}
-                                            </small>
-                                        @endif
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="badge bg-info text-dark bg-opacity-10 border border-info">
-                                        {{ $registrant->program->program_name ?? '-' }}
-                                    </span>
-                                </td>
-                                <td>
-                                    @php
-                                        $statusColor = match ($registrant->status) {
-                                            'Pending' => 'warning',
-                                            'Verified' => 'info',
-                                            'Accepted' => 'success',
-                                            'Rejected' => 'danger',
-                                            default => 'secondary',
-                                        };
-                                    @endphp
-                                    <span class="badge bg-{{ $statusColor }}">{{ $registrant->status }}</span>
-                                </td>
-                                <td>{{ $registrant->registration_date->format('d M Y') }}</td>
-                                <td class="text-end">
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.registrants.view', $registrant->id) }}"
-                                            class="btn btn-sm btn-outline-primary" title="Lihat Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.registrants.edit', $registrant->id) }}"
-                                            class="btn btn-sm btn-outline-secondary" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <button wire:click="delete({{ $registrant->id }})"
-                                            wire:confirm="Hapus data {{ $registrant->full_name }}?"
-                                            class="btn btn-sm btn-outline-danger" title="Hapus">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <x-admin.registrant.table.table-row :registrant="$registrant" :index="$registrants->firstItem() + $loop->index" />
                         @empty
                             <tr>
                                 <td colspan="7" class="text-center py-5">
-                                    <div class="empty-state">
-                                        <div class="empty-state-icon mb-3">
-                                            <i class="fas fa-inbox fa-2x text-muted opacity-75"></i>
+                                    <div class="d-flex flex-column align-items-center justify-content-center my-3">
+                                        <div class="bg-light rounded-circle p-4 mb-3">
+                                            <i class="fas fa-inbox fa-3x text-secondary opacity-25"></i>
                                         </div>
-                                        <h6 class="text-muted mb-1">Tidak ada data ditemukan</h6>
+                                        <h6 class="fw-bold text-secondary mb-1">Tidak ada data ditemukan</h6>
+                                        <p class="small text-muted mb-0">
+                                            @if ($search)
+                                                Tidak ada peserta yang cocok dengan keywords
+                                                "<strong>{{ $search }}</strong>"
+                                            @else
+                                                Belum ada data peserta yang terdaftar.
+                                            @endif
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -168,9 +135,12 @@ new class extends Component {
                 </table>
             </div>
         </div>
-    </div>
 
-    <div class="mt-4">
-        {{ $registrants->links() }}
+        {{-- Pagination Footer --}}
+        <div class="card-footer bg-white border-0 py-3 rounded-bottom-4">
+            <div class="d-flex justify-content-end">
+                {{ $registrants->links() }}
+            </div>
+        </div>
     </div>
 </div>

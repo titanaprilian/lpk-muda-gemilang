@@ -524,6 +524,7 @@ class ComposerStaticInit3644d4a2628aeaebed3f4f36c2238131
         'App\\Http\\Requests\\StoreRegistrantRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreRegistrantRequest.php',
         'App\\Http\\Responses\\LoginResponse' => __DIR__ . '/../..' . '/app/Http/Responses/LoginResponse.php',
         'App\\Livewire\\Actions\\Logout' => __DIR__ . '/../..' . '/app/Livewire/Actions/Logout.php',
+        'App\\Livewire\\Forms\\RegistrantForm' => __DIR__ . '/../..' . '/app/Livewire/Forms/RegistrantForm.php',
         'App\\Models\\Program' => __DIR__ . '/../..' . '/app/Models/Program.php',
         'App\\Models\\Registrant' => __DIR__ . '/../..' . '/app/Models/Registrant.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

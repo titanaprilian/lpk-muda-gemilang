@@ -38,6 +38,7 @@ class Registrant extends Model
         "scan_akta",
         "scan_ijazah_sd",
         "scan_ijazah_smp",
+        "scan_ijazah_sma",
     ];
 
     protected $casts = [

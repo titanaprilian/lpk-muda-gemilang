@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Requests\\StoreRegistrantRequest' => $baseDir . '/app/Http/Requests/StoreRegistrantRequest.php',
     'App\\Http\\Responses\\LoginResponse' => $baseDir . '/app/Http/Responses/LoginResponse.php',
     'App\\Livewire\\Actions\\Logout' => $baseDir . '/app/Livewire/Actions/Logout.php',
+    'App\\Livewire\\Forms\\RegistrantForm' => $baseDir . '/app/Livewire/Forms/RegistrantForm.php',
     'App\\Models\\Program' => $baseDir . '/app/Models/Program.php',
     'App\\Models\\Registrant' => $baseDir . '/app/Models/Registrant.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

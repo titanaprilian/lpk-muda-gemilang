@@ -121,7 +121,7 @@
 
                         <div class="input-group full-width">
                             <label for="kerja">Pengalaman Kerja</label>
-                            <textarea id="kerja" name="kerja" placeholder="Tulis '-' jika belum ada"></textarea>
+                            <textarea required id="kerja" name="kerja" placeholder="Tulis seadanya, contoh: PKL di Bengkel X"></textarea>
                         </div>
 
                         <div class="input-group full-width">
@@ -211,6 +211,17 @@
                             <div class="file-preview" id="preview-smp"></div>
                             <input type="file" id="scan_ijazah_smp" name="scan_ijazah_smp" accept="image/*,.pdf"
                                 onchange="previewImage(event, 'preview-smp')" required>
+                        </div>
+
+                        <div class="file-upload-card">
+                            <div class="file-header">
+                                <span class="file-icon">🎓</span>
+                                <span class="file-label">Ijazah SMA/SMK</span>
+                            </div>
+                            <div class="file-preview" id="preview-sma"></div>
+
+                            <input type="file" id="scan_ijazah_sma" name="scan_ijazah_sma" accept="image/*,.pdf"
+                                onchange="previewImage(event, 'preview-sma')" required>
                         </div>
                     </div>
                 </div>

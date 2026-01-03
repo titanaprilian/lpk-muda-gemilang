@@ -18,7 +18,6 @@ class RegistrantController extends Controller
     // Use StoreRegistrantRequest instead of standard Request
     public function store(StoreRegistrantRequest $request)
     {
-        Log::info("Storing new registrant", $request->all());
         try {
             // 1. Upload Files
             $filePaths = $this->uploadDocuments($request);
@@ -43,7 +42,7 @@ class RegistrantController extends Controller
                 "weight_kg" => $request->berat_badan,
 
                 "work_experience" => $request->kerja,
-                "status" => "pending",
+                "status" => "Pending",
                 "registration_date" => now(),
 
                 // Spread the file paths array
@@ -77,6 +76,7 @@ class RegistrantController extends Controller
             "scan_akta",
             "scan_ijazah_sd",
             "scan_ijazah_smp",
+            "scan_ijazah_sma",
         ];
 
         foreach ($documents as $docName) {

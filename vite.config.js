@@ -8,14 +8,11 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/css/main.css",
                 "resources/js/app.js",
-
-                // ADD THESE TWO LINES:
                 "resources/css/admin-auth.css",
                 "resources/js/admin-auth.js",
-
-                // ADD THESE FOR ADMIN DASHBOARD:
                 "resources/css/admin-layout.css",
                 "resources/js/admin-layout.js",
+                "resources/css/registrant-detail.css",
             ],
             refresh: true,
         }),
