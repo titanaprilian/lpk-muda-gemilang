@@ -30,13 +30,12 @@ return [
                 "icon" => "fas fa-user-graduate",
                 "route" => "admin.registrants.index",
                 "active_route" => "admin.registrants.*",
-                // "badge" => 12, // Example of a static badge (Dynamic badges need ViewComposers)
             ],
             [
                 "title" => "Export Laporan",
                 "icon" => "fas fa-file-pdf",
-                "route" => "admin.dashboard", // Change later
-                "active_route" => "admin.export.*",
+                "route" => "admin.export-reports.index",
+                "active_route" => "admin.export-reports.*",
             ],
         ],
     ],
@@ -47,7 +46,7 @@ return [
             [
                 "title" => "Galeri Kegiatan",
                 "icon" => "fas fa-images",
-                "route" => "admin.dashboard", // Change later
+                "route" => "admin.galleries.index",
                 "active_route" => "admin.gallery.*",
             ],
         ],
@@ -59,7 +58,7 @@ return [
             [
                 "title" => "Pengaturan",
                 "icon" => "fas fa-cog",
-                "route" => "admin.dashboard", // Change later
+                "route" => "admin.settings.index",
                 "active_route" => "admin.settings.*",
             ],
         ],

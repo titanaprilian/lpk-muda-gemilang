@@ -27,3 +27,27 @@ Route::prefix("registrants")
             return view("admin.registrants.form", compact("id"));
         })->name("edit");
     });
+
+Route::prefix("export-reports")
+    ->name("export-reports.")
+    ->group(function () {
+        Route::get("/", function () {
+            return view("admin.export-reports.index");
+        })->name("index");
+    });
+
+Route::prefix("settings")
+    ->name("settings.")
+    ->group(function () {
+        Route::get("/", function () {
+            return view("admin.settings.index");
+        })->name("index");
+    });
+
+Route::prefix("galleries")
+    ->name("galleries.")
+    ->group(function () {
+        Route::get("/", function () {
+            return view("admin.galleries.index");
+        })->name("index");
+    });

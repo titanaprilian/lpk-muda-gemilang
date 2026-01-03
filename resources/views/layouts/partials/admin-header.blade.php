@@ -22,13 +22,6 @@
     </div>
 
     <div class="header-right">
-        {{-- Notification --}}
-        <button class="header-action position-relative" title="Notifications">
-            <i class="fas fa-bell"></i>
-            {{-- Badge --}}
-            <span class="notification-badge">3</span>
-        </button>
-
         {{-- User Dropdown --}}
         <div class="dropdown">
             <button class="header-action" type="button" id="userDropdown" data-bs-toggle="dropdown"

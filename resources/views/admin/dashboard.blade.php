@@ -44,16 +44,16 @@
                 <div class="card-body">
                     <div class="row g-3">
                         <x-admin.dashboard.action-card icon="fas fa-clipboard-list" color="primary" title="Data Pendaftar"
-                            subtitle="Kelola & Verifikasi Peserta" link="#" />
+                            subtitle="Kelola & Verifikasi Peserta" link="{{ route('admin.registrants.index') }}" />
 
                         <x-admin.dashboard.action-card icon="fas fa-file-pdf" color="danger" title="Export PDF"
-                            subtitle="Unduh Laporan Pendaftaran" link="#" />
+                            subtitle="Unduh Laporan Pendaftaran" link="{{ route('admin.export-reports.index') }}" />
 
                         <x-admin.dashboard.action-card icon="fas fa-camera" color="info" title="Kelola Galeri"
-                            subtitle="Upload Foto Kegiatan" link="#" />
+                            subtitle="Upload Foto Kegiatan" link="{{ route('admin.galleries.index') }}" />
 
                         <x-admin.dashboard.action-card icon="fas fa-cog" color="secondary" title="Pengaturan"
-                            subtitle="Konfigurasi Website" link="#" />
+                            subtitle="Konfigurasi Website" link="{{ route('admin.settings.index') }}" />
                     </div>
                 </div>
             </div>
