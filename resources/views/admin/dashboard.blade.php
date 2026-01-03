@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <livewire:admin.stats-overview />
+    <livewire:admin.dashboard.stats-overview />
 
     <div class="row">
         <div class="col-12 mb-4">
@@ -20,7 +20,7 @@
                 <div class="card-header">
                     <h5 class="card-title mb-2">Statistik Pendaftaran</h5>
 
-                    <livewire:admin.registration-chart />
+                    <livewire:admin.dashboard.registration-chart />
                 </div>
                 <div class="card-body">
                     <div class="chart-placeholder">
@@ -43,16 +43,16 @@
                 </div>
                 <div class="card-body">
                     <div class="row g-3">
-                        <x-admin.action-card icon="fas fa-clipboard-list" color="primary" title="Data Pendaftar"
+                        <x-admin.dashboard.action-card icon="fas fa-clipboard-list" color="primary" title="Data Pendaftar"
                             subtitle="Kelola & Verifikasi Peserta" link="#" />
 
-                        <x-admin.action-card icon="fas fa-file-pdf" color="danger" title="Export PDF"
+                        <x-admin.dashboard.action-card icon="fas fa-file-pdf" color="danger" title="Export PDF"
                             subtitle="Unduh Laporan Pendaftaran" link="#" />
 
-                        <x-admin.action-card icon="fas fa-camera" color="info" title="Kelola Galeri"
+                        <x-admin.dashboard.action-card icon="fas fa-camera" color="info" title="Kelola Galeri"
                             subtitle="Upload Foto Kegiatan" link="#" />
 
-                        <x-admin.action-card icon="fas fa-cog" color="secondary" title="Pengaturan"
+                        <x-admin.dashboard.action-card icon="fas fa-cog" color="secondary" title="Pengaturan"
                             subtitle="Konfigurasi Website" link="#" />
                     </div>
                 </div>

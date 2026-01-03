@@ -35,21 +35,6 @@
             @include('layouts.partials.admin-header')
 
             <div class="admin-content p-4">
-                {{-- Flash Messages (Toast/Alerts) --}}
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
                 @yield('content')
             </div>
 
@@ -72,11 +57,6 @@
 
                 document.addEventListener('livewire:init', () => {
                     Livewire.on('trigger-toast', (event) => {
-                        // event is an array in Livewire v3, usually [0] contains the payload
-                        // or strictly mapped properties depending on dispatch method. 
-                        // We'll handle the generic object style:
-
-                        // Allow access to payload whether it comes as object or array
                         let data = event[0] || event;
 
                         if (window.Toast && window.Toast[data.type]) {

@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10">
             {{-- We pass the ID if it exists (for Edit mode) --}}
-            @livewire('admin.registrant-form', ['id' => $id ?? null])
+            @livewire('admin.registrant.registrant-form', ['id' => $id ?? null])
         </div>
     </div>
 @endsection

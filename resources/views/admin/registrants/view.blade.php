@@ -13,7 +13,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <livewire:admin.registrant-show :id="$id" />
+            <livewire:admin.registrant.registrant-show :id="$id" />
         </div>
     </div>
 @endsection

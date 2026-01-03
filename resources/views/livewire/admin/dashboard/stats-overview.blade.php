@@ -18,15 +18,15 @@ new class extends Component {
 }; ?>
 
 <div class="row" wire:poll.10s>
-    <x-admin.stats-card title="Total Pendaftar" :value="$totalPendaftar" percentage="Total Data" :isIncrease="true"
+    <x-admin.dashboard.stats-card title="Total Pendaftar" :value="$totalPendaftar" percentage="Total Data" :isIncrease="true"
         icon="fas fa-user-graduate" color="primary" />
 
-    <x-admin.stats-card title="Menunggu Verifikasi" :value="$pending" percentage="Perlu Tindakan" :isIncrease="false"
-        icon="fas fa-clock" color="warning" delay="0.1" />
+    <x-admin.dashboard.stats-card title="Menunggu Verifikasi" :value="$pending" percentage="Perlu Tindakan"
+        :isIncrease="false" icon="fas fa-clock" color="warning" delay="0.1" />
 
-    <x-admin.stats-card title="Peserta Diterima" :value="$diterima" percentage="Siap Berangkat" :isIncrease="true"
-        icon="fas fa-check-circle" color="success" delay="0.2" />
+    <x-admin.dashboard.stats-card title="Peserta Diterima" :value="$diterima" percentage="Siap Berangkat"
+        :isIncrease="true" icon="fas fa-check-circle" color="success" delay="0.2" />
 
-    <x-admin.stats-card title="Pendaftar Bulan Ini" :value="$bulanIni" percentage="New Leads" :isIncrease="true"
+    <x-admin.dashboard.stats-card title="Pendaftar Bulan Ini" :value="$bulanIni" percentage="New Leads" :isIncrease="true"
         icon="fas fa-calendar-alt" color="info" delay="0.3" />
 </div>
