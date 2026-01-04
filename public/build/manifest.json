@@ -3,6 +3,10 @@
     "file": "assets/bootstrap.esm-ChCUMv8x.js",
     "name": "bootstrap.esm"
   },
+  "_sweetalert2.esm.all-B3GDCxSY.js": {
+    "file": "assets/sweetalert2.esm.all-B3GDCxSY.js",
+    "name": "sweetalert2.esm.all"
+  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
@@ -59,6 +63,14 @@
       "main.css"
     ]
   },
+  "resources/css/registrant-detail.css": {
+    "file": "assets/registrant-detail-Cm2U6O5t.css",
+    "src": "resources/css/registrant-detail.css",
+    "isEntry": true,
+    "names": [
+      "registrant-detail.css"
+    ]
+  },
   "resources/js/admin-auth.js": {
     "file": "assets/admin-auth-PRcGzQqw.js",
     "name": "admin-auth",
@@ -69,18 +81,22 @@
     ]
   },
   "resources/js/admin-layout.js": {
-    "file": "assets/admin-layout-DW3jlm-D.js",
+    "file": "assets/admin-layout-kL2V1up2.js",
     "name": "admin-layout",
     "src": "resources/js/admin-layout.js",
     "isEntry": true,
     "imports": [
-      "_bootstrap.esm-ChCUMv8x.js"
+      "_bootstrap.esm-ChCUMv8x.js",
+      "_sweetalert2.esm.all-B3GDCxSY.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-M8CwiT7q.js",
+    "file": "assets/app-xRArU6RW.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_sweetalert2.esm.all-B3GDCxSY.js"
+    ]
   }
 }
