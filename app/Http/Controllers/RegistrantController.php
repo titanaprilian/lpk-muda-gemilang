@@ -83,7 +83,7 @@ class RegistrantController extends Controller
             if ($request->hasFile($docName)) {
                 $filePaths[$docName] = $request
                     ->file($docName)
-                    ->store("documents", "public");
+                    ->store("registrants/documents", "public");
             } else {
                 $filePaths[$docName] = null;
             }

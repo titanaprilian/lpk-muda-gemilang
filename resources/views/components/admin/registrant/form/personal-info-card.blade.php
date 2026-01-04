@@ -7,7 +7,7 @@
     <div class="card-body px-4 pb-4">
         <div class="row g-3">
             {{-- Nama Lengkap --}}
-            <div class="col-12">
+            <div class="col-md-6">
                 <div class="form-floating">
                     <input type="text" wire:model="form.full_name"
                         class="form-control @error('form.full_name') is-invalid @enderror" id="fullName"
@@ -53,6 +53,15 @@
                     <input type="number" wire:model="form.age" class="form-control bg-light" id="age" readonly
                         placeholder="Usia">
                     <label for="age">Usia (Tahun)</label>
+                </div>
+            </div>
+
+            {{-- Hobi --}}
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" wire:model="form.hobby" class="form-control" id="hobby"
+                        placeholder="Hobi">
+                    <label for="hobby">Hobi</label>
                 </div>
             </div>
 

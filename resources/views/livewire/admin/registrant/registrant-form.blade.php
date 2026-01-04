@@ -48,7 +48,7 @@ new class extends Component {
         // Check if the file actually exists in the DB
         if ($this->form->registrant && $this->form->registrant->$field) {
             // Delete from storage
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($this->form->registrant->$field);
+            Storage::disk('public')->delete($this->form->registrant->$field);
 
             // Update DB to null
             $this->form->registrant->update([$field => null]);

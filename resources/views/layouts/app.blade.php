@@ -37,14 +37,6 @@
         <i class="bi bi-arrow-up-short"></i>
     </a>
 
-    {{-- Preloader --}}
-    <div id="preloader">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
     {{-- Toast Logic --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {

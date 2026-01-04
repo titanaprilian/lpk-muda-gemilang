@@ -50,4 +50,16 @@ Route::prefix("galleries")
         Route::get("/", function () {
             return view("admin.galleries.index");
         })->name("index");
+
+        Route::get("/create", function () {
+            return view("admin.galleries.form");
+        })->name("create");
+
+        Route::get("/{id}", function ($id) {
+            return view("admin.galleries.view", compact("id"));
+        })->name("view");
+
+        Route::get("/{id}/edit", function ($id) {
+            return view("admin.galleries.form", compact("id"));
+        })->name("edit");
     });

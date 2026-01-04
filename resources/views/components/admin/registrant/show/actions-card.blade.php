@@ -4,7 +4,8 @@
     <div class="card-body p-4">
         <h5 class="section-title">Aksi Cepat</h5>
         <div class="d-grid gap-2">
-            <a href="{{ route('admin.registrants.edit', $registrant->id) }}" class="btn btn-outline-primary">
+            <a href="{{ route('admin.registrants.edit', $registrant->id) }}"
+                class="btn btn-warning fw-bold text-white shadow-sm">
                 <i class="fas fa-edit me-2"></i>Edit Data
             </a>
 

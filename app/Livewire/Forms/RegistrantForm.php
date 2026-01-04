@@ -45,7 +45,7 @@ class RegistrantForm extends Form
     public $scan_akta = null;
     public $scan_ijazah_sd = null;
     public $scan_ijazah_smp = null;
-    public $scan_ijazah_sma = null; // New field included
+    public $scan_ijazah_sma = null;
 
     // --- 2. VALIDATION RULES ---
     public function rules()
@@ -54,7 +54,7 @@ class RegistrantForm extends Form
             "program_id" => "required|exists:program,id",
             "full_name" => "required|min:3",
             "email" => "required|email",
-            "phone_number" => "required|numeric",
+            "phone_number" => "required|string",
             "gender" => "required|in:Laki-laki,Perempuan",
             "status" => "required",
 
@@ -102,7 +102,7 @@ class RegistrantForm extends Form
     // --- 4. MAIN ACTION: STORE ---
     public function store()
     {
-        // A. Sanitize Files (Preserving your original logic)
+        // A. Sanitize Files
         $this->sanitizeFileInputs();
 
         // B. Validate
@@ -111,10 +111,27 @@ class RegistrantForm extends Form
         // C. Collect Data
         $data = $this->all();
 
+        // Define the file fields to exclude from the raw data
+        $fileFields = [
+            "scan_ktp",
+            "scan_kk",
+            "scan_akta",
+            "scan_ijazah_sd",
+            "scan_ijazah_smp",
+            "scan_ijazah_sma",
+            "registrant", // Also remove the model object itself
+        ];
+
+        // Remove them from the array
+        foreach ($fileFields as $field) {
+            unset($data[$field]);
+        }
+
         // D. Handle Uploads
+        // This method only returns keys for files that are actually NEW uploads
         $uploadedPaths = $this->uploadFiles();
 
-        // Merge uploaded paths into data (overwriting nulls)
+        // Merge uploaded paths into data.
         $data = array_merge($data, $uploadedPaths);
 
         // E. Save to Database

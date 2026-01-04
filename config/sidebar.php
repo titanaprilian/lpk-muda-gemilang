@@ -47,7 +47,7 @@ return [
                 "title" => "Galeri Kegiatan",
                 "icon" => "fas fa-images",
                 "route" => "admin.galleries.index",
-                "active_route" => "admin.gallery.*",
+                "active_route" => "admin.galleries.*",
             ],
         ],
     ],
