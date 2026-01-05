@@ -1,5 +1,7 @@
 import * as bootstrap from "bootstrap";
 import Swal from "sweetalert2";
+import "trix";
+import "trix/dist/trix.css";
 
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";

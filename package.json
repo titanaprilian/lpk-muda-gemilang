@@ -24,6 +24,7 @@
         "sweetalert2": "^11.26.17",
         "swiper": "^12.0.3",
         "tailwindcss": "^4.0.7",
+        "trix": "^2.1.16",
         "vite": "^7.0.4"
     },
     "optionalDependencies": {

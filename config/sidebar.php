@@ -49,6 +49,12 @@ return [
                 "route" => "admin.galleries.index",
                 "active_route" => "admin.galleries.*",
             ],
+            [
+                "title" => "Daftar Program",
+                "icon" => "fas fa-chalkboard-teacher",
+                "route" => "admin.programs.index",
+                "active_route" => "admin.programs.*",
+            ],
         ],
     ],
 

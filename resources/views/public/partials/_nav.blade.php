@@ -16,23 +16,24 @@
                     <a href="/#about" class="{{ Request::is('*about*') ? 'active' : '' }}">Tentang
                         Kami</a>
                 </li>
+                {{-- DYNAMIC PROGRAM DROPDOWN --}}
                 <li class="dropdown">
-                    @php
-                        $programActive =
-                            Request::is('pemagangan-jepang') || Request::is('tokutei-ginou') || Request::is('im-japan');
-                    @endphp
-                    <a href="#services" class="{{ $programActive ? 'active' : '' }}">
+                    <a href="#services" class="{{ Request::routeIs('public.program.show') ? 'active' : '' }}">
                         <span>Program</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
                     <ul>
-                        <li><a href="/pemagangan-jepang"
-                                class="{{ Request::is('pemagangan-jepang') ? 'active' : '' }}">Program Pemagangan
-                                Jepang</a></li>
-                        <li><a href="/tokutei-ginou" class="{{ Request::is('tokutei-ginou') ? 'active' : '' }}">Program
-                                Visa Kerja (Tokutei
-                                Ginou)</a></li>
-                        <li><a href="/im-japan" class="{{ Request::is('im-japan') ? 'active' : '' }}">Program IM
-                                Japan</a></li>
+                        @foreach ($globalPrograms as $navProgram)
+                            <li>
+                                {{-- 
+                                    1. Route: Points to the dynamic show page
+                                    2. Active Class: Checks if current URL matches this specific program slug
+                                --}}
+                                <a href="{{ route('public.program.show', $navProgram->slug) }}"
+                                    class="{{ Request::is('program/' . $navProgram->slug) ? 'active' : '' }}">
+                                    {{ $navProgram->program_name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
                 <li><a href="/#galeri">Galeri</a></li>

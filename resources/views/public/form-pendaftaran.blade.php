@@ -141,9 +141,8 @@
                                             <div class="card-content">
                                                 <span class="card-title">{{ $program->program_name }}</span>
 
-                                                {{-- USE SUBTITLE HERE (Short Text) --}}
-                                                @if ($program->subtitle)
-                                                    <span class="card-sub">{{ $program->subtitle }}</span>
+                                                @if ($program->description)
+                                                    <span class="card-sub">{{ $program->description }}</span>
                                                 @endif
                                             </div>
                                         </label>

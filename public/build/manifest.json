@@ -81,13 +81,16 @@
     ]
   },
   "resources/js/admin-layout.js": {
-    "file": "assets/admin-layout-kL2V1up2.js",
+    "file": "assets/admin-layout-P5MZlBaR.js",
     "name": "admin-layout",
     "src": "resources/js/admin-layout.js",
     "isEntry": true,
     "imports": [
       "_bootstrap.esm-ChCUMv8x.js",
       "_sweetalert2.esm.all-B3GDCxSY.js"
+    ],
+    "css": [
+      "assets/admin-layout-lev5Q_f0.css"
     ]
   },
   "resources/js/app.js": {

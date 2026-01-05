@@ -63,3 +63,23 @@ Route::prefix("galleries")
             return view("admin.galleries.form", compact("id"));
         })->name("edit");
     });
+
+Route::prefix("programs")
+    ->name("programs.")
+    ->group(function () {
+        Route::get("/", function () {
+            return view("admin.programs.index");
+        })->name("index");
+
+        Route::get("/create", function () {
+            return view("admin.programs.form");
+        })->name("create");
+
+        Route::get("/{id}/edit", function ($id) {
+            return view("admin.programs.form", ["id" => $id]);
+        })->name("edit");
+
+        Route::get("/{id}", function ($id) {
+            return view("admin.programs.view", ["id" => $id]);
+        })->name("view");
+    });
